@@ -4,9 +4,14 @@ const percentage= document.getElementById('percentage')
 const remained = document.getElementById('remained')
 
 updateBigCup()
-
+var sound = new Audio("pouring.m4a");
 smallCups.forEach((cup,idx) =>{
-    cup.addEventListener('click',() => highlightCups(idx))
+    cup.addEventListener('click',() => {
+        highlightCups(idx);
+        sound.play();
+    
+    })
+        
 })
 
 
