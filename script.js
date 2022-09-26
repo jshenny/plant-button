@@ -3,14 +3,18 @@ let isPlantWatered = false;
 $(document).ready(function () {
     $('.water-button').click(function () {
         isPlantWatered = true;
-        const plantImage = $('.plant').attr('src');
-        if (plantImage === "images/happy_plant_sprout.svg" || plantImage === "images/neutral_plant_sprout.svg" || plantImage === "images/sad_plant_sprout.svg") {
-            $('.plant').attr("src", "images/happy_plant_teen.svg");
-        } else if (plantImage === "images/happy_plant_teen.svg" || plantImage === "images/neutral_plant_teen.svg" || plantImage === "images/sad_plant_teen.svg") {
-            $('.plant').attr("src", "images/happy_plant_adult.svg");
-        } else {
-            $('.plant').attr("src", "images/happy_plant_adult.svg");
-        }
+        $(".watering-can").css("display", "block");
+        setTimeout(function(){
+            const plantImage = $('.plant').attr('src');
+            if (plantImage === "images/happy_plant_sprout.svg" || plantImage === "images/neutral_plant_sprout.svg" || plantImage === "images/sad_plant_sprout.svg") {
+                $('.plant').attr("src", "images/happy_plant_teen.svg");
+            } else if (plantImage === "images/happy_plant_teen.svg" || plantImage === "images/neutral_plant_teen.svg" || plantImage === "images/sad_plant_teen.svg") {
+                $('.plant').attr("src", "images/happy_plant_adult.svg");
+            } else {
+                $('.plant').attr("src", "images/happy_plant_adult.svg");
+            }
+            $(".watering-can").css("display", "none");
+        }, 1500); 
     })
 })
 
