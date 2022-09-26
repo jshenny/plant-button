@@ -1,63 +1,83 @@
-const smallCups = document.querySelectorAll('.cup-small')
-const liters= document.getElementById('liters')
-const percentage= document.getElementById('percentage')
-const remained = document.getElementById('remained')
+
+//Button selectors
+const addButton = document.querySelector(".add");
+        removeButton = document.querySelector(".remove")
+//Element for update
+const currentCupsEl = document.querySelector('.current-cups'),
+    currentLitersEl = document.querySelector('.current-liters')
+const progress = document.querySelector('.percentage')
+const remainedLiters = document.getElementById('remained-liters')
 const wellDone = document.getElementById('wellDone')
+const remained = document.getElementById('remained')
 
-updateBigCup()
-var sound = new Audio("pouring.m4a");
-smallCups.forEach((cup,idx) =>{
-    cup.addEventListener('click',() => {
-        highlightCups(idx);
-        sound.play();
+const MAX_CUPS = 8,
+      MIN_CUPS = 0;
+
+let cups = 0,
+    liters =0,
+    percentage =0;
+    remains=2;
+
+updateLayout();
+addButton.addEventListener("click",addCup)
+removeButton.addEventListener("click",removeCup)
+
+function addCup(){
+    cups++;
+    liters+=250;
+    percentage = (cups/MAX_CUPS) *100;
     
-    })
-        
-})
-
-
-
-function highlightCups(idx){
-
-    if(smallCups[idx].classList.contains('full') && !smallCups[idx].nextElementSibling.classList.contains('full')){
-        idx--
+    //Update Layout
+    updateLayout();
+   
+    if(cups === MAX_CUPS ){
+        addButton.disabled=true;
+    }else{
+        removeButton.disabled = false;
     }
+    
 
-    smallCups.forEach((cup, idx2)=> {
-        if(idx2 <= idx){
-            cup.classList.add('full')
-        }else{
-            cup.classList.remove('full')
-        }
-    })
-    updateBigCup()
 }
 
-function updateBigCup(){
-    const fullCups = document.querySelectorAll('.cup-small.full').length
-    const totalCups = smallCups.length
+function removeCup(){
+    cups--;
+    liters-=250;
+    percentage = (cups/MAX_CUPS) *100;
 
-    if(fullCups === 0){
-        percentage.style.visibility = 'hidden'
-        percentage.style.height = 0
+      //Update Layout
+      updateLayout();
+
+      if(cups === MIN_CUPS){
+        removeButton.disabled = true;
+      }else{
+        addButton.disabled=false;
+      }
+
+}
+function updateLayout(){
+  
+    currentCupsEl.textContent = `${cups}/8`;
+    currentLitersEl.textContent = `${liters/1000}l/2l`;
+    progress.innerText = `${percentage}%`;
+    progress.style.height= `${percentage}%`;
+    remainedLiters.innerText=`${2-(250* cups / 1000)}L`
+  
+    if(cups === MIN_CUPS){
+        progress.style.visibility = 'hidden'
+        progress.style.height = 0
         wellDone.style.visibility = 'hidden'
+
     }else{
-        percentage.style.visibility = 'visible'
-        percentage.style.height = `${fullCups/totalCups *330}px`
-        percentage.innerText = `${fullCups/ totalCups *100}%`
-        wellDone.style.visibility = 'hidden'
-
+        progress.style.visibility = 'visible'
     }
 
-    if(fullCups === totalCups){
-        remained.style.visibility='hidden'
+    if(cups === MAX_CUPS){
+        remained.style.visibility = 'hidden'
         remained.style.height = 0
         wellDone.style.visibility = 'visible'
-        
+
     }else{
-        remained.style.visibility='visible'
-        liters.innerText=`${2-(250* fullCups / 1000)}L`
+        remained.style.visibility = 'visible'
+        wellDone.style.visibility = 'hidden'
     }
-
 }
-
