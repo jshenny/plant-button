@@ -109,17 +109,28 @@ h3{
 }
 buttons{
     grid-column: -1/1;
-    margin:10px auto;
+    margin:20px 30px;
 }
 
-button {
+.add {
     background-color: #2196F3;
     color: #fff;
     border: 1px solid #a5d7fe;
     width: 60px;
     height: 60px;
-    font-size: 45px;
+    font-size: 25px;
     border-radius: 50%;
+    outline-style: none;
+    cursor: pointer;
+}
+
+.reset{
+    background-color: #2196F3;
+    color: #fff;
+    border: 1px solid #a5d7fe;
+    width: 75px;
+    height: 60px;
+    font-size: 25px;
     outline-style: none;
     cursor: pointer;
 }

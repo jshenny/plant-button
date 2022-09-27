@@ -1,7 +1,7 @@
 
 //Button selectors
 const addButton = document.querySelector(".add");
-        removeButton = document.querySelector(".remove")
+    resetButton = document.querySelector(".reset")
 //Element for update
 const currentCupsEl = document.querySelector('.current-cups'),
     currentLitersEl = document.querySelector('.current-liters')
@@ -20,7 +20,8 @@ let cups = 0,
 
 updateLayout();
 addButton.addEventListener("click",addCup)
-removeButton.addEventListener("click",removeCup)
+resetButton.addEventListener("click",resetCup)
+
 
 function addCup(){
     cups++;
@@ -33,27 +34,29 @@ function addCup(){
     if(cups === MAX_CUPS ){
         addButton.disabled=true;
     }else{
-        removeButton.disabled = false;
+        resetButton.disabled = false;
     }
     
 
 }
 
-function removeCup(){
-    cups--;
-    liters-=250;
-    percentage = (cups/MAX_CUPS) *100;
-
+function resetCup(){
+    cups =0;
+    liters =0;
+    percentage = 0;
       //Update Layout
       updateLayout();
-
+     
+      addButton.disabled = false;
+      
       if(cups === MIN_CUPS){
-        removeButton.disabled = true;
-      }else{
+        resetButton.disabled = true;
+        }else{
         addButton.disabled=false;
       }
-
 }
+
+
 function updateLayout(){
   
     currentCupsEl.textContent = `${cups}/8`;
