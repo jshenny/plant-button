@@ -29,7 +29,7 @@ function checkIfPlantIsWatered() {
         } else if (plantImage === "images/happy_plant_preteen.svg") {
             $('.plant').attr("src", "images/neutral_plant_preteen.svg");
         }  else if (plantImage === "images/happy_plant_teen.svg") {
-            $('.plant').attr("src", "images/neutral_plant_preteen.svg");
+            $('.plant').attr("src", "images/neutral_plant_teen.svg");
         } else if (plantImage === "images/happy_plant_adult.svg") {
             $('.plant').attr("src", "images/neutral_plant_adult.svg");
         } else if (plantImage === "images/neutral_plant_sprout.svg") {
@@ -51,7 +51,7 @@ function resetPlant() {
     isPlantWatered = false;
 }
 
-setInterval(checkIfPlantIsWatered, 10000);
+setInterval(checkIfPlantIsWatered, 6000);
 setInterval(reset, 600000);
 
 
