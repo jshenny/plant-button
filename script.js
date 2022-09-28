@@ -17,7 +17,7 @@ $(document).ready(function () {
                 console.log("3");
             }
             $(".watering-can").css("visibility", "hidden");
-        }, 1500); 
+        }, 1000); 
     })
 })
 

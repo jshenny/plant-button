@@ -6,13 +6,6 @@
   padding-bottom: 3rem;
 }
 
-.button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
 .plant-div {
   padding: 10px;
   height: 35rem;
@@ -54,6 +47,7 @@ h3 {
   font-weight: 400px;
   color: black;
 }
+
 .wellDone {
   font-size: 25px;
   font-weight: 700px;
@@ -61,6 +55,7 @@ h3 {
   position: absolute;
   top: 7rem;
 }
+
 .mainLayout {
   display: flex;
   flex-direction: row;
@@ -68,10 +63,15 @@ h3 {
   margin: auto;
   gap: 15px;
 }
+
 .plant {
-  height: 22rem;
+  height: 24rem;
   padding-left: 5rem;
   padding-right: 5rem;
+}
+
+.goal {
+  margin-bottom: 0px;
 }
 
 .cup {
@@ -136,9 +136,9 @@ h3 {
   font-weight: bold;
   transition: 0.3s ease;
 }
-buttons {
-  grid-column: -1/1;
-  margin: 20px 30px;
+
+button {
+  padding: 1px 10px;
 }
 
 .add {
@@ -151,6 +151,7 @@ buttons {
   border-radius: 20px;
   outline-style: none;
   cursor: pointer;
+  margin-right: 0.5rem;
 }
 
 .reset {
