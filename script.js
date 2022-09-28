@@ -7,14 +7,13 @@ $(document).ready(function () {
         setTimeout(function(){
             const plantImage = $('.plant').attr('src');
             if (plantImage === "images/happy_plant_sprout.svg" || plantImage === "images/neutral_plant_sprout.svg" || plantImage === "images/sad_plant_sprout.svg") {
+                $('.plant').attr("src", "images/happy_plant_preteen.svg");
+            } else if (plantImage === "images/happy_plant_preteen.svg" || plantImage === "images/neutral_plant_preteen.svg" || plantImage === "images/sad_plant_preteen.svg") {
                 $('.plant').attr("src", "images/happy_plant_teen.svg");
-                console.log("1");
-            } else if (plantImage === "images/happy_plant_teen.svg" || plantImage === "images/neutral_plant_teen.svg" || plantImage === "images/sad_plant_teen.svg") {
+            }  else if (plantImage === "images/happy_plant_teen.svg" || plantImage === "images/neutral_plant_teen.svg" || plantImage === "images/sad_plant_teen.svg") {
                 $('.plant').attr("src", "images/happy_plant_adult.svg");
-                console.log("2");
             } else {
                 $('.plant').attr("src", "images/happy_plant_adult.svg");
-                console.log("3");
             }
             $(".watering-can").css("visibility", "hidden");
         }, 1000); 
@@ -24,15 +23,19 @@ $(document).ready(function () {
 
 function checkIfPlantIsWatered() {
     const plantImage = $('.plant').attr('src');
-    if (isPlantWatered === false) {
+    if (isPlantWatered === false && liters !== 2000) {
         if (plantImage === "images/happy_plant_sprout.svg") {
             $('.plant').attr("src", "images/neutral_plant_sprout.svg");
-        } else if (plantImage === "images/happy_plant_teen.svg") {
-            $('.plant').attr("src", "images/neutral_plant_teen.svg");
+        } else if (plantImage === "images/happy_plant_preteen.svg") {
+            $('.plant').attr("src", "images/neutral_plant_preteen.svg");
+        }  else if (plantImage === "images/happy_plant_teen.svg") {
+            $('.plant').attr("src", "images/neutral_plant_preteen.svg");
         } else if (plantImage === "images/happy_plant_adult.svg") {
             $('.plant').attr("src", "images/neutral_plant_adult.svg");
         } else if (plantImage === "images/neutral_plant_sprout.svg") {
             $('.plant').attr("src", "images/sad_plant_sprout.svg");
+        } else if (plantImage === "images/neutral_plant_preteen.svg") {
+            $('.plant').attr("src", "images/sad_plant_preteen.svg");
         } else if (plantImage === "images/neutral_plant_teen.svg") {
             $('.plant').attr("src", "images/sad_plant_teen.svg");
         } else if (plantImage === "images/neutral_plant_adult.svg") {
@@ -40,6 +43,7 @@ function checkIfPlantIsWatered() {
         }
     }
     isPlantWatered = false;
+    console.log(liters);
 }
 
 function resetPlant() {
@@ -47,7 +51,7 @@ function resetPlant() {
     isPlantWatered = false;
 }
 
-setInterval(checkIfPlantIsWatered, 5000);
+setInterval(checkIfPlantIsWatered, 10000);
 setInterval(reset, 600000);
 
 
@@ -72,8 +76,6 @@ let cups = 0,
 
 updateLayout();
 addButton.addEventListener("click",addCup)
-resetButton.addEventListener("click",reset)
-
 
 function addCup(){
     cups++;
@@ -85,11 +87,7 @@ function addCup(){
    
     if(cups === MAX_CUPS ){
         addButton.disabled=true;
-    }else{
-        resetButton.disabled = false;
     }
-    
-
 }
 
 function reset() {
@@ -106,9 +104,7 @@ function resetCup(){
      
       addButton.disabled = false;
       
-      if(cups === MIN_CUPS){
-        resetButton.disabled = true;
-        }else{
+      if(cups !== MIN_CUPS){
         addButton.disabled=false;
       }
 }

@@ -154,18 +154,6 @@ button {
   margin-right: 0.5rem;
 }
 
-.reset {
-  background-color: #2196f3;
-  color: #fff;
-  border: 1px solid #a5d7fe;
-  width: 100px;
-  height: 60px;
-  font-size: 25px;
-  border-radius: 20px;
-  outline-style: none;
-  cursor: pointer;
-}
-
 button:disabled {
   background-color: #a5d7fe;
 }
